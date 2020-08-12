@@ -1,0 +1,29 @@
+@font-face {
+  font-family: 'Font';
+  src: url('./VT323-Regular.ttf') format('ttf');
+  font-weight: 400;
+  font-style: normal;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background-color: tomato;
+  margin: 0;
+  font-family: Font;
+  width: 100vw;
+  height: 100vh;
+  /* disable hidden scrollbars */
+  overflow: hidden;
+  /* disable chrome swipe nav */
+  overscroll-behavior-x: none;
+}
+canvas {
+  touch-action: none;
+}
