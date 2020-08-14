@@ -5,9 +5,13 @@ import { LifeCycle } from '../type'
 
 export const TOTAL = 144
 
-export class Cards extends PIXI.Container implements LifeCycle {
+export class Cards extends PIXI.ParticleContainer implements LifeCycle {
   constructor() {
-    super()
+    super(TOTAL, {
+      position: true,
+      rotation: true,
+      vertices: true,
+    })
     console.log('Cards')
 
     for (let i = 0; i < TOTAL; i++) {
