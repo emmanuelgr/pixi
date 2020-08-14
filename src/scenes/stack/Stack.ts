@@ -1,9 +1,9 @@
 import * as PIXI from 'pixi.js'
-import { app } from '../index'
-import { LifeCycle } from '../LifeCycle'
-import { Fps } from '../elems/Fps'
-import { Cards } from '../elems/Cards'
-import { ButtonX } from '../elems/ButtonX'
+import { app } from '../../index'
+import { LifeCycle } from '../../LifeCycle'
+import { Fps } from '../../elems/Fps'
+import { Cards } from './Cards'
+import { ButtonX } from '../../elems/ButtonX'
 
 export class Stack extends PIXI.Container implements LifeCycle {
   private elements = [new Cards(), new Fps(), new ButtonX()]

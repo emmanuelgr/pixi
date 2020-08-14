@@ -1,7 +1,7 @@
 import * as PIXI from 'pixi.js'
-import { app } from '../index'
 import { Card } from './Card'
-import { LifeCycle } from '../LifeCycle'
+import { app } from '../..'
+import { LifeCycle } from '../../LifeCycle'
 
 export const TOTAL = 144
 

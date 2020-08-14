@@ -1,10 +1,10 @@
 import * as PIXI from 'pixi.js'
-import { app } from '../index'
-import { LifeCycle } from '../LifeCycle'
-import { ButtonX } from '../elems/ButtonX'
-import { Smoke } from '../elems/Smoke'
-import { Cernel } from '../elems/Cernel'
-import { Sparks } from '../elems/Sparks'
+import { app } from '../../index'
+import { LifeCycle } from '../../LifeCycle'
+import { ButtonX } from '../../elems/ButtonX'
+import { Smoke } from './Smoke'
+import { Cernel } from './Cernel'
+import { Sparks } from './Sparks'
 
 export class Fire extends PIXI.Container implements LifeCycle {
   private elements = [new Smoke(), new Cernel(), new Sparks(), new ButtonX()]

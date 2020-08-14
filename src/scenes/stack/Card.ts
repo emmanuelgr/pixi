@@ -1,8 +1,8 @@
 import * as PIXI from 'pixi.js'
-import { app } from '../index'
-import { LifeCycle } from '../LifeCycle'
 import { TOTAL } from './Cards'
-import { easeInOutCubic, easeInOutQuad } from '../Utils'
+import { easeInOutCubic, easeInOutQuad } from '../../Utils'
+import { LifeCycle } from '../../LifeCycle'
+import { app } from '../..'
 
 const ANIM_LENGTH = 2000
 const ANIM_LENGTH_RECI = 1 / ANIM_LENGTH

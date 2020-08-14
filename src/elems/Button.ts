@@ -1,7 +1,7 @@
 import * as PIXI from 'pixi.js'
 import { app } from '../index'
 import { LifeCycle } from '../LifeCycle'
-import { TOTAL } from './Cards'
+import { TOTAL } from '../scenes/stack/Cards'
 import { easeInOutCubic, easeInOutQuad } from '../Utils'
 
 const PADD = 20

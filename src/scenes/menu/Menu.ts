@@ -1,7 +1,7 @@
 import * as PIXI from 'pixi.js'
-import { app, setScene } from '../index'
-import { LifeCycle } from '../LifeCycle'
-import { Button } from '../elems/Button'
+import { app, setScene } from '../../index'
+import { LifeCycle } from '../../LifeCycle'
+import { Button } from '../../elems/Button'
 
 const PADD = 10
 

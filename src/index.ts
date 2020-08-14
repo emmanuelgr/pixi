@@ -1,8 +1,8 @@
 import * as PIXI from 'pixi.js'
 import './style.css'
-import { Stack } from './scenes/Stack'
-import { Fire } from './scenes/Fire'
-import { Menu } from './scenes/Menu'
+import { Stack } from './scenes/stack/Stack'
+import { Fire } from './scenes/fire/Fire'
+import { Menu } from './scenes/menu/Menu'
 import { Button } from './elems/Button'
 
 export type Scene = 'menu' | 'stack' | 'fire' | 'tool'

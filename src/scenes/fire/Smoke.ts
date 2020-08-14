@@ -1,7 +1,7 @@
 import * as PIXI from 'pixi.js'
-import { app } from '../index'
-import { LifeCycle } from '../LifeCycle'
-import { easeInOutCubic } from '../Utils'
+import { app } from '../../index'
+import { LifeCycle } from '../../LifeCycle'
+import { easeInOutCubic } from '../../Utils'
 
 export class Smoke extends PIXI.ParticleContainer implements LifeCycle {
   private elements: PIXI.Sprite[] = []
