@@ -15,6 +15,17 @@ const init = () => {
     resolution: window.devicePixelRatio,
     autoDensity: true,
   })
+  // stop ticking when tab not visible
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      app.ticker.stop()
+      app.stop()
+    } else {
+      app.ticker.start()
+      app.start()
+    }
+  })
+  // TODO: show user loading status
   // load the textures we need
   app.loader
     .add('meli', './assets/meli.png')
