@@ -1,11 +1,29 @@
 import * as PIXI from 'pixi.js'
 import './style.css'
-import { Cards } from './elems/Cards'
-import { LifeCycle } from './type'
-import { Fps } from './elems/Fps'
+import { Stack } from './scenes/Stack'
+import { Fire } from './scenes/Fire'
+import { Menu } from './scenes/Menu'
+import { Button } from './elems/Button'
+
+export type Scene = 'menu' | 'stack' | 'fire' | 'tool'
 
 export let app: PIXI.Application
-const elems: Array<LifeCycle> = []
+
+// All the valid scenes
+const scenes: Record<Scene, Stack | Fire | Menu> = {
+  stack: new Stack(),
+  fire: new Fire(),
+  tool: new Fire(),
+  menu: new Menu(),
+}
+// the active scene
+let activeScene: Stack | Fire | Menu
+//
+export function setScene(scene: Scene) {
+  if (activeScene) activeScene.stop()
+  activeScene = scenes[scene]
+  activeScene.start()
+}
 
 const init = () => {
   // create app
@@ -14,22 +32,24 @@ const init = () => {
     resizeTo: window,
     resolution: window.devicePixelRatio,
     autoDensity: true,
+    backgroundColor: 0x222222,
   })
+
   // stop ticking when tab not visible
   document.addEventListener('visibilitychange', () => {
     if (document.hidden) {
-      app.ticker.stop()
       app.stop()
     } else {
-      app.ticker.start()
       app.start()
     }
   })
+
   // TODO: show user loading status
   // load the textures we need
   app.loader
     .add('meli', './assets/meli.png')
-    .add('sprites', './assets/sprites.png')
+    .add('15', './assets/Smoke15Frames.png')
+    .add('4', './assets/hiclipart.com.png')
     .add('desyrel', './assets/bitmap-font/desyrel.xml')
     .load(setup)
 }
@@ -39,23 +59,16 @@ const setup = () => {
   document.body.appendChild(app.view)
 
   // init
-  // elems.push(new Card())
-  elems.push(new Cards())
-  elems.push(new Fps())
+  scenes.stack.init()
+  scenes.fire.init()
+  scenes.tool.init()
+  scenes.menu.init()
+  setScene('fire')
 
-  const ticker = new PIXI.Ticker()
-  for (let i = 0; i < elems.length; i++) {
-    const elem = elems[i]
-    elem.start(ticker.deltaMS, ticker.lastTime)
-  }
-  ticker.add(update)
-  ticker.start()
+  app.ticker.add(update)
 
   function update() {
-    for (let i = 0; i < elems.length; i++) {
-      const elem = elems[i]
-      elem.update(ticker.deltaMS, ticker.lastTime)
-    }
+    activeScene.update(app.ticker.deltaMS, app.ticker.lastTime)
     app.renderer.render(app.stage)
   }
 }

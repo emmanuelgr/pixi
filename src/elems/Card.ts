@@ -1,12 +1,15 @@
 import * as PIXI from 'pixi.js'
 import { app } from '../index'
-import { LifeCycle } from '../type'
+import { LifeCycle } from '../LifeCycle'
 import { TOTAL } from './Cards'
 import { easeInOutCubic, easeInOutQuad } from '../Utils'
 
 const ANIM_LENGTH = 2000
 const ANIM_LENGTH_RECI = 1 / ANIM_LENGTH
 
+/**
+ * Card class, parent will be stage centered
+ */
 export class Card extends PIXI.Sprite implements LifeCycle {
   private cardIndexRatio: number
   private animationStartTime: number
@@ -25,9 +28,12 @@ export class Card extends PIXI.Sprite implements LifeCycle {
    * @param cardIndexRatio
    */
   constructor(cardIndexRatio: number) {
-    super(app.loader.resources.meli.texture)
+    super()
     this.cardIndexRatio = cardIndexRatio
+  }
 
+  init() {
+    this.texture = app.loader.resources.meli.texture
     // Set pivot
     this.anchor.x = 0.3
     this.anchor.y = 0.6

@@ -1,7 +1,7 @@
 import * as PIXI from 'pixi.js'
 import { app } from '../index'
 import { Card } from './Card'
-import { LifeCycle } from '../type'
+import { LifeCycle } from '../LifeCycle'
 
 export const TOTAL = 144
 
@@ -12,20 +12,14 @@ export class Cards extends PIXI.ParticleContainer implements LifeCycle {
       rotation: true,
       vertices: true,
     })
-    console.log('Cards')
+  }
 
+  init() {
     for (let i = 0; i < TOTAL; i++) {
       const card = new Card(i / (TOTAL - 1))
+      card.init()
       this.addChild(card)
     }
-  }
-
-  start(deltaMS: number, lastTime: number): void {
-    app.stage.addChild(this)
-  }
-
-  stop(deltaMS: number, lastTime: number): void {
-    app.stage.removeChild(this)
   }
 
   update(deltaMS: number, lastTime: number): void {
