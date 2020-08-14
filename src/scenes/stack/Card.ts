@@ -12,7 +12,7 @@ const ANIM_LENGTH_RECI = 1 / ANIM_LENGTH
  */
 export class Card extends PIXI.Sprite implements LifeCycle {
   private cardIndexRatio: number
-  private animationStartTime: number
+  private startTimeOffset: number
   // A value between 0-1 that represents the animation as a fraction for this element
   private animationRatio = 0
   // In and Out locations
@@ -39,7 +39,7 @@ export class Card extends PIXI.Sprite implements LifeCycle {
     this.anchor.y = 0.6
 
     // time when the animation will start on this card( every second 1000ms)
-    this.animationStartTime = (1 - this.cardIndexRatio) * TOTAL * 1000
+    this.startTimeOffset = (1 - this.cardIndexRatio) * TOTAL * 1000
 
     // set in and out x values, keep object visible. Parent container is cenetered
     const halfScreenWidth = app.screen.width * 0.5
@@ -60,7 +60,7 @@ export class Card extends PIXI.Sprite implements LifeCycle {
     // update animation ratio and constrain range to 0-1
     this.animationRatio = Math.max(
       0,
-      Math.min((lastTime - this.animationStartTime) * ANIM_LENGTH_RECI, 1),
+      Math.min((lastTime - this.startTimeOffset) * ANIM_LENGTH_RECI, 1),
     )
 
     // FIXME:  optimization needs to accomodate for stale time

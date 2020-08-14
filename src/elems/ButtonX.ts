@@ -6,10 +6,12 @@ export class ButtonX extends Button {
   constructor() {
     super('x')
   }
+
   init() {
     super.init()
     this.on('pointerup', () => setScene('menu'))
   }
+
   update(deltaMS: number, lastTime: number): void {
     super.update(deltaMS, lastTime)
     this.x = app.screen.width - this.width * 0.5 - 10

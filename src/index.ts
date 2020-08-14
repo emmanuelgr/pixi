@@ -4,20 +4,21 @@ import { Stack } from './scenes/stack/Stack'
 import { Fire } from './scenes/fire/Fire'
 import { Menu } from './scenes/menu/Menu'
 import { Button } from './elems/Button'
+import { Tool } from './scenes/tool/Tool'
 
 export type Scene = 'menu' | 'stack' | 'fire' | 'tool'
 
 export let app: PIXI.Application
 
 // All the valid scenes
-const scenes: Record<Scene, Stack | Fire | Menu> = {
+const scenes: Record<Scene, Stack | Fire | Menu | Tool> = {
   stack: new Stack(),
   fire: new Fire(),
-  tool: new Fire(),
+  tool: new Tool(),
   menu: new Menu(),
 }
 // the active scene
-let activeScene: Stack | Fire | Menu
+let activeScene: Stack | Fire | Menu | Tool
 //
 export function setScene(scene: Scene) {
   if (activeScene) activeScene.stop()
@@ -63,7 +64,7 @@ const setup = () => {
   scenes.fire.init()
   scenes.tool.init()
   scenes.menu.init()
-  setScene('fire')
+  setScene('menu')
 
   app.ticker.add(update)
 

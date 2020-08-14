@@ -6,6 +6,8 @@ import { LifeCycle } from '../../LifeCycle'
 export const TOTAL = 144
 
 export class Cards extends PIXI.ParticleContainer implements LifeCycle {
+  private elements: Card[] = []
+
   constructor() {
     super(TOTAL, {
       position: true,
@@ -15,8 +17,10 @@ export class Cards extends PIXI.ParticleContainer implements LifeCycle {
   }
 
   init() {
+    // create all cards
     for (let i = 0; i < TOTAL; i++) {
       const card = new Card(i / (TOTAL - 1))
+      this.elements.push(card)
       card.init()
       this.addChild(card)
     }
@@ -27,10 +31,10 @@ export class Cards extends PIXI.ParticleContainer implements LifeCycle {
     // center self
     this.x = app.screen.width * 0.5
     this.y = app.screen.height * 0.5
-    // update children
-    for (let i = 0; i < this.children.length; i++) {
-      const child = this.children[i]
-      ;(child as Card).update(deltaMS, lastTime)
+    // update all cards
+    for (let i = 0; i < this.elements.length; i++) {
+      const card = this.elements[i]
+      card.update(deltaMS, lastTime)
     }
   }
 }
